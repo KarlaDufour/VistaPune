@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <style>
+    .circle {
+      width: 50px;
+      height: 50px;
+      border: double 8px transparent;
+      border-radius: 19px;
+      background-origin: border-box;
+      background-color: brown;
+    }
+
+    .card1,
+    .card2,
+    .card3,
+    .card4,
+    .card5 {
+      height: 40px;
+      padding-bottom: 60px;
+    }
+
+    .card1 {
+      background-color: #a1a1fb;
+    }
+
+    .card2 {
+      background-color: #5757f9;
+    }
+
+    .card3 {
+      background-color: #0e0ef6;
+    }
+
+    .card4 {
+      background-color: #0707b0;
+    }
+
+    .card5 {
+      background-color: #03034e;
+    }
+
+    .temp-prom-content {
+      display: inline-block;
+      width: 80%;
+      position: relative;
+    }
+  </style>
+</head>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+    <a class="navbar-brand">Monitoreo & Control</a>
+  </nav>
+</header>
+
+<div style="height:5px;"></div>
+
+<body style="margin:8px;">
+
+  <div class="d-flex flex-sm-row flex-column" style="margin:0;">
+
+    <!--Temperatura-->
+    <div class="card flex-fill col" style="flex:0;padding: 0">
+
+      <div class="card-body d-flex flex-row justify-content-around align-items-center">
+        <div class="temp-prom-content">
+          <h2>Temperatura</h2>
+          <h3><b>{{promedio}}°C</b></h3>
+          <h5>Promedio</h5>
+        </div>
+        <div>
+
+        </div>
+      </div>
+
+      <div class="card-body d-flex flex-row justify-content-around align-items-center">
+        <div class="circle"></div>
+        <div class="">
+          <h4 class="card-title">Sensor 1</h4>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        </div>
+        <div class="">
+          <h1>25 </h1>
+        </div>
+      </div>
+
+      <div class="card-body d-flex flex-row justify-content-around align-items-center">
+        <div class="circle"></div>
+        <div class="">
+          <h4 class="card-title">Sensor 2</h4>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        </div>
+        <div class="">
+          <h1>25 </h1>
+        </div>
+      </div>
+
+      <div class="card-body d-flex flex-row justify-content-around align-items-center">
+        <div class="circle"></div>
+        <div class="">
+          <h4 class="card-title">Sensor 3</h4>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        </div>
+        <div class="">
+          <h1>25 </h1>
+        </div>
+      </div>
+
+    </div>
+
+    <!--Nivel-->
+    <div class="card-body card-body-chart flex-fill col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-center">Nivel del tanque</h4>
+          <div class="d-flex">
+            <div class="col-2 flex-column">
+              <div class="card1 rounded-lg"></div>
+              <div style="height:2px;"></div>
+              <div class="card2 rounded-lg"></div>
+              <div style="height:2px;"></div>
+              <div class="card3 rounded-lg"></div>
+              <div style="height:2px;"></div>
+              <div class="card4 rounded-lg"></div>
+              <div style="height:2px;"></div>
+              <div class="card5 rounded-lg"></div>
+            </div>
+            <div class="col-10 align-self-center text-center">
+              <img src="C:/Users/Karla Dufour/Pictures/imgsP/sensors-data.png" class="img-fluid" style="height: 250px;">
+              <h2>{{lastNiv}} cm</h2>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <br>
+
+      <div class="card">
+        <div class="card-body justify-content-around d-flex flex-row">
+          <div class="flex-column align-self-center text-center">
+            <img src="C:/Users/Karla Dufour/Pictures/imgsP/error.png" style="height: 60px;">
+            <h5 class="font-weight-bold">Valvula de llenado</h5>
+            <h6 class="text-muted">Estado</h6>
+          </div>
+          <div class="flex-column align-self-center text-center">
+            <img src="C:/Users/Karla Dufour/Pictures/imgsP/success.png" style="height: 60px;">
+            <h5 class="font-weight-bold">Valvula de vaciado</h5>
+            <h6 class="text-muted">Estado</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Control-->
+    <div class="flex-row">
+      <div class="card-body bg-info" role="tab">
+        <h5 class="mb-0"><a class=" text-white">Control de valvulas</a>
+        </h5>
+
+      </div>
+
+        <div class="card-body flex-column d-flex">
+          <div class="custom-control custom-switch">
+
+            <input type="checkbox" class="custom-control-input switch1" id="customSwitch1">
+            <label class="custom-control-label" for="customSwitch1">
+              Valvula de llenado <label id="CheckBoxValue"></label>
+            </label>
+
+          </div>
+          <br>
+          <div class="custom-control custom-switch">
+
+            <input type="checkbox" class="custom-control-input switch2" id="customSwitch2">
+            <label class="custom-control-label" for="customSwitch2">
+              Valvula de vaciado <label id="CheckBoxValue2" value="None"></label>
+            </label>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    jQuery.ajax({
+      type:"POST",
+      url: ''
+    })
+
+    
+  </script>
+
+</body>
+
+</html>
